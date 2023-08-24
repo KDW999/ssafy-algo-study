@@ -66,7 +66,7 @@ public class SWEA5658 {
 			}
 			System.out.println("---");
 */
-			for(i=4*pwsize-1; i>=0; i--) {
+			for(i=4*pwsize-1; i>=0; i--) {////hashset
 				if(cnt==k) {
 					sb.append(res[i] + "\n");
 					break;
