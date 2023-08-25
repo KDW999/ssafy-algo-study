@@ -11,11 +11,10 @@ public class SWEA2115 {
 	private static int[][] prof;
 	private static int[] sel;
 	private static int n=0,m=0,c=0,k=0;
-	private static int i,j,len,max,summax;
+	private static int i,j,len,max;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int tcase=0, t=0, sum=0, div=0;
-		
+		int tcase=0, t=0, sum=0, div=0;	
       
         String[] in;
         t = Integer.parseInt(br.readLine());
@@ -26,20 +25,21 @@ public class SWEA2115 {
         	 n = Integer.parseInt(in[0]);
         	 m = Integer.parseInt(in[1]);
         	 c = Integer.parseInt(in[2]);
+        	 k=(n-m+1)*n;
+        	 div =(n-m+1); 
         	 map = new int[n][n];
         	 prof = new int[n][n];
-        	 
+        	
         	for(i=0; i<n; i++) {
         		in =br.readLine().split(" ");
         		for(j=0; j<n; j++) {
             		map[i][j] =Integer.parseInt(in[j]);
             	}
         	}
-        	sel = new int[m+1];
-        	k=(n-m+1)*n;
-        	div =(n-m+1); 
+        	sel = new int[m+1]; //for combination
+ 	
         	for(i=0;i<n; i++) {
-    			for(j=0; j<n-m+1; j++) {
+    			for(j=0; j<div; j++) {
 					max=0;
 					for(len=1;len<=m;len++) {
 						combi(0,0);//possb? chk.
@@ -47,11 +47,12 @@ public class SWEA2115 {
 					prof[i][j]=max;
     			}
     		}
+
         	sum=0;        	
         	max=0;
     		for(i=0;i<k; i++) {
     			for(j=i+1; j<k; j++) {
-    				if((i/div == j/div) && (j%div>=(i%div+m))) {
+    				if((i/div == j/div) && ((i%div+m)>=j%div)) {
     					continue;
     				}
     				sum=prof[i/div][i%div]+prof[j/div][j%div];
@@ -70,17 +71,19 @@ public class SWEA2115 {
 	private static void combi(int cnt, int start) {
 		if(cnt==len) {
 			int s=0;
+			int profit=0;
 			for(int q=0;q<len;q++) {
-				s+=map[i][j+sel[cnt]];
+				s+=map[i][j+sel[q]];
+				profit+=map[i][j+sel[q]]*map[i][j+sel[q]];
 			}
-			if(s<=c && s>max) {
-				max=s;
+			if(s<=c && profit>max) {
+				max=profit;
 			}
 			return;
 		}
-		for(int i=start; i<m; i++) {
-			sel[cnt] = i;
-			combi(cnt+1, i+1);
+		for(int q=start; q<m; q++) {
+			sel[cnt] = q;
+			combi(cnt+1, q+1);
 		}		
 	}
 
