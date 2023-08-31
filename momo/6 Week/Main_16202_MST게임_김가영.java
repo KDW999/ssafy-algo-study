@@ -1,5 +1,3 @@
-package 스터디_6주차;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -22,7 +20,6 @@ public class Main_16202_MST게임_김가영 {
 		public int compareTo(Node o) {
 			return this.weight - o.weight;
 		}
-		
 	}
 	
 	static int[] parents; 
@@ -37,9 +34,6 @@ public class Main_16202_MST게임_김가영 {
 		
 		
 		parents = new int[N + 1];
-//		for (int i = 1; i <= N; i++) {
-//			parents[i] = i;
-//		}
 		Node[] graph = new Node[M];
 		
 		for (int i = 0; i < M; i++) {
@@ -71,12 +65,9 @@ public class Main_16202_MST게임_김가영 {
 			if(check != N) sb.append(0 + " ");
 			else {
 				sb.append(sum + " ");
-//				Node[] tmp = Arrays.copyOfRange(tmpList,1,tmpList.size()-1);
 			}
-			graph = new Node[tmpList.size()];
-			for (int i = 1; i < tmpList.size(); i++) {
-				graph[i-1] = tmpList.get(i);
-			}
+			Node[] tmp = Arrays.copyOfRange(graph,1,graph.length);
+			graph = tmp;
 		}
 		System.out.println(sb);
 	}
