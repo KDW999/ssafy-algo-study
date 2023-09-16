@@ -1,2 +1,5 @@
 ## ignore file ##
 .test
+*.iml
+*.xml
+/.idea
