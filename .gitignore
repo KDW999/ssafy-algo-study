@@ -2,4 +2,5 @@
 .test
 *.iml
 *.xml
+*.DS_Store
 /.idea
