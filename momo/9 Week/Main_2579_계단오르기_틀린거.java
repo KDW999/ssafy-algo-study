@@ -1,6 +1,10 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/*
+*	예제 거의 1000개는 맞는데 틀린 것도 있어서 아까운 풀이
+*/
+
 public class Main_2579_계단오르기_틀린거 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
